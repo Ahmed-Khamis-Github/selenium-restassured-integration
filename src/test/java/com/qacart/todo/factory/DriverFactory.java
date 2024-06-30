@@ -7,10 +7,9 @@ import org.openqa.selenium.edge.EdgeDriver;
 
 public class DriverFactory {
 
-    private WebDriver driver;
-
     public WebDriver initializeDriver() {
         String browser = System.getProperty("browser", "chrome");
+        WebDriver driver;
         switch (browser) {
             case "chrome":
                 driver = new ChromeDriver();

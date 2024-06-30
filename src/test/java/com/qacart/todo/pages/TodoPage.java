@@ -1,6 +1,8 @@
 package com.qacart.todo.pages;
 
 import com.qacart.todo.base.BasePage;
+import com.qacart.todo.utilities.ConfigUtils;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -18,6 +20,7 @@ public class TodoPage extends BasePage {
     public TodoPage(WebDriver driver) {
         super(driver);
     }
+    @Step
 
     public NewTodoPage clickAddNewTodo() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -26,12 +29,13 @@ public class TodoPage extends BasePage {
         return new NewTodoPage(driver) ;
 
     }
-
+@Step
     public TodoPage deleteTodoItem() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.elementToBeClickable(deleteItemBtn)).click();
         return this ;
     }
+    @Step
 
     public String itemDisplayedTxtAssertion() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -42,5 +46,12 @@ public class TodoPage extends BasePage {
     public boolean noItemDisplayedTxtAssertion() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         return wait.until(ExpectedConditions.visibilityOfElementLocated(noItemDisplayedMsg)).isDisplayed();
+    }
+
+
+    public TodoPage  load ()
+    {
+        driver.get(ConfigUtils.getInstance().getBaseUrl()+"todo");
+        return this ;
     }
 }

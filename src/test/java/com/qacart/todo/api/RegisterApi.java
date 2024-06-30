@@ -1,9 +1,13 @@
 package com.qacart.todo.api;
 
+import com.qacart.todo.config.EndPoint;
 import com.qacart.todo.objects.User;
 import com.qacart.todo.utilities.UserUtils;
+import io.restassured.http.Cookie;
 import io.restassured.http.Cookies;
 import io.restassured.response.Response;
+
+import java.util.List;
 
 import static io.restassured.RestAssured.given;
 
@@ -14,6 +18,9 @@ public class RegisterApi {
 
     public Cookies getRestAssuredCookies() {
         return restAssuredCookies;
+    }
+    public List<Cookie> getCookiesAsList() {
+        return restAssuredCookies.asList();
     }
 
     public String getAccessToken() {
@@ -29,7 +36,7 @@ public class RegisterApi {
                         .contentType("application/json")
                         .body(user)
                         .when()
-                        .post("api/v1/users/register")
+                        .post(EndPoint.API_REGISTER_ENDPOINT)
                         .then()
                         .extract()
                         .response() ;
@@ -38,6 +45,7 @@ public class RegisterApi {
         accessToken = res.path("access_token") ;
 
      }
+
 
 
 

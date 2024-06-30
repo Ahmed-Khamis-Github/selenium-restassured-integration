@@ -1,6 +1,7 @@
 package com.qacart.todo.pages;
 
 import com.qacart.todo.base.BasePage;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -21,6 +22,7 @@ public class LoginPage extends BasePage {
     public LoginPage(WebDriver driver) {
         super(driver);
     }
+    @Step
 
     public TodoPage enterValidLoginCredentials(String email , String password)
     {
@@ -32,12 +34,13 @@ public class LoginPage extends BasePage {
 
 
     }
+    @Step
 
     public boolean logoutIsDisplayedAssertion()
     {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.presenceOfElementLocated(
-                By.cssSelector("[data-testid='submit-newTask']")
+                By.xpath("//button[.//span[text()='Logout']]")
         ));
 
         return    driver.findElement(logoutBtn).isDisplayed();

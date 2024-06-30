@@ -1,6 +1,7 @@
 package com.qacart.todo.pages;
 
 import com.qacart.todo.base.BasePage;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -17,6 +18,9 @@ public class NewTodoPage extends BasePage {
     public NewTodoPage(WebDriver driver) {
         super(driver);
     }
+
+
+    @Step
 
     public TodoPage addNewTodo(String todoTask) {
 
